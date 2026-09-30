@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>මාතෘකාවක් එකතු කරන්න</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .form-box {
+            background-color: white;
+            border: 1px solid #ddd;
+            width: 40%;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0 15px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #219653;
+        }
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            color: #2980b9;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2>අලුත් මාතෘකාවක් එකතු කරන්න ✍️</h2>
+        <form method="POST">
+            {% csrf_token %} <!-- Django වල ආරක්ෂාව සඳහා අත්‍යවශ්‍ය කේතයක් -->
+            {{ form.as_p }}
+            <button type="submit">සේව් කරන්න (Save)</button>
+        </form>
+        <a href="{% url 'home' %}">← මුල් පිටුවට යන්න</a>
+    </div>
+</body>
+</html>
