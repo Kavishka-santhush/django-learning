@@ -18,10 +18,31 @@
             color: #555;
             font-size: 18px;
         }
+        .tech-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .tech-list li {
+            background-color: #27ae60;
+            color: white;
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-    <h1>স্বাগত! Welcome to Django 🚀</h1>
-    <p>මම දැන් step by step Django ඉගෙන ගනිමින් සිටිමි.</p>
+    <!-- Views වලින් ආපු name එක පෙන්වීම -->
+    <h1>স্বাগত, {{ name }}! 👋</h1>
+    <p>අපි දැන් ඉගෙන ගනිමින් සිටින්නේ: <strong>{{ course }}</strong></p>
+
+    <h3>අපි ඉගෙන ගන්නා තාක්ෂණයන්:</h3>
+    <ul class="tech-list">
+        <!-- For loop එකක් භාවිතයෙන් ලැයිස්තුව පෙන්වීම -->
+        {% for tech in technologies %}
+            <li>{{ tech }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
