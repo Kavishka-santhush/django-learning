@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 def home_view(request):
-    return HttpResponse("Hello, World! මම දැන් Django ඉගෙන ගන්නවා. 🚀")
+    # index.html ෆයිල් එක බ්‍රව්සර් එකට යැවීම
+    return render(request, 'index.html')
