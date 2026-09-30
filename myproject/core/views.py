@@ -1,12 +1,14 @@
 from django.shortcuts import render
+from .models import Topic  # අපි හදපු Topic Model එක ගෙන්වා ගැනීම
 
 def home_view(request):
-    # HTML එකට යවන්න ඕන දත්ත (Data) Dictionary එකක් විදිහට හැදීම
+    # ඩේටාබේස් එකේ තියෙන සියලුම Topics ටික ලබා ගැනීම
+    all_topics = Topic.objects.all()
+    
     context = {
         'name': 'සන්තුෂ්',
         'course': 'Django මූලික සිට උසස් මට්ටමට (Beginner to Advanced)',
-        'technologies': ['Python', 'Django', 'HTML/CSS', 'Database'],
+        'topics': all_topics,  # ඩේටාබේස් ඩේටා මෙහි ඇතුළත් වේ
     }
     
-    # render කරනකොට context එකත් එකතු කරලා යැවීම
     return render(request, 'index.html', context)

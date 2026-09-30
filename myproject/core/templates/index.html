@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
             text-align: center;
-            padding-top: 50px;
+            padding-top: 30px;
         }
         h1 {
             color: #2c3e50;
@@ -18,31 +18,41 @@
             color: #555;
             font-size: 18px;
         }
-        .tech-list {
-            list-style-type: none;
-            padding: 0;
+        .topic-box {
+            background-color: white;
+            border: 1px solid #ddd;
+            width: 50%;
+            margin: 10px auto;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: left;
         }
-        .tech-list li {
-            background-color: #27ae60;
-            color: white;
-            display: inline-block;
-            padding: 8px 15px;
-            margin: 5px;
-            border-radius: 5px;
+        .topic-box h3 {
+            margin-top: 0;
+            color: #2980b9;
         }
     </style>
 </head>
 <body>
-    <!-- Views වලින් ආපු name එක පෙන්වීම -->
     <h1>স্বাগত, {{ name }}! 👋</h1>
     <p>අපි දැන් ඉගෙන ගනිමින් සිටින්නේ: <strong>{{ course }}</strong></p>
 
-    <h3>අපි ඉගෙන ගන්නා තාක්ෂණයන්:</h3>
-    <ul class="tech-list">
-        <!-- For loop එකක් භාවිතයෙන් ලැයිස්තුව පෙන්වීම -->
-        {% for tech in technologies %}
-            <li>{{ tech }}</li>
+    <hr style="width: 60%; margin: 20px auto;">
+
+    <h2>අපි ඩේටාබේස් එකෙන් ලබාගත් මාතෘකා (Topics from Database):</h2>
+
+    <!-- ඩේටාබේස් එකේ ඩේටා තියෙනවද බලලා ලූප් කිරීම -->
+    {% if topics %}
+        {% for topic in topics %}
+            <div class="topic-box">
+                <h3>{{ topic.title }}</h3>
+                <p>{{ topic.description }}</p>
+                <small style="color: gray;">ඇතුළත් කළ දිනය: {{ topic.created_at }}</small>
+            </div>
         {% endfor %}
-    </ul>
+    {% else %}
+        <p>තවම ඩේටාබේස් එකේ මාතෘකා කිසිවක් ඇතුළත් කර නැත. Admin Panel එකෙන් එකතු කරන්න!</p>
+    {% endif %}
 </body>
 </html>
