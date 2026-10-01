@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required  # අලුතින් එකතු කළ Decorator එක
 from django.contrib import messages
 from .models import Topic
 from .forms import TopicForm
@@ -13,6 +14,8 @@ def home_view(request):
     }
     return render(request, 'index.html', context)
 
+# Login වූ පරිශීලකයින්ට පමණක් මෙම පිටුවට ප්‍රවේශ විය හැක
+@login_required(login_url='login')
 def add_topic_view(request):
     if request.method == 'POST':
         form = TopicForm(request.POST)
@@ -25,7 +28,6 @@ def add_topic_view(request):
     context = {'form': form}
     return render(request, 'add_topic.html', context)
 
-# අලුතින් එකතු කළ Signup View එක
 def signup_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
