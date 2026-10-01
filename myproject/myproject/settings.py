@@ -121,3 +121,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Login වූ පසු සාමාන්‍යයෙන් මුල් පිටුවට යාමට
+LOGIN_REDIRECT_URL = 'home'

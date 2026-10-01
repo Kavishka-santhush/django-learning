@@ -18,6 +18,20 @@
             color: #555;
             font-size: 18px;
         }
+        .nav-bar {
+            margin-bottom: 20px;
+        }
+        .nav-bar a {
+            background-color: #2980b9;
+            color: white;
+            padding: 8px 15px;
+            margin: 0 5px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .nav-bar a:hover {
+            background-color: #2471a3;
+        }
         .topic-box {
             background-color: white;
             border: 1px solid #ddd;
@@ -35,14 +49,28 @@
     </style>
 </head>
 <body>
-    <h1>স্বাগত, {{ name }}! 👋</h1>
+    <!-- User Authentication Navigation Links -->
+    <div class="nav-bar">
+        {% if user.is_authenticated %}
+            <span>স্বাগত, <strong>{{ user.username }}</strong>! 👋</span>
+            <a href="{% url 'add_topic' %}">මාතෘකාවක් එකතු කරන්න</a>
+            <form action="{% url 'logout' %}" method="POST" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" style="background-color: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">පිටවන්න (Logout)</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">ඇතුළු වන්න (Login)</a>
+            <a href="{% url 'signup' %}">ගිණුමක් සාදාගන්න (Sign Up)</a>
+        {% endif %}
+    </div>
+
+    <h1>Django ඉගෙනුම් වේදිකාව 🚀</h1>
     <p>අපි දැන් ඉගෙන ගනිමින් සිටින්නේ: <strong>{{ course }}</strong></p>
 
     <hr style="width: 60%; margin: 20px auto;">
 
     <h2>අපි ඩේටාබේස් එකෙන් ලබාගත් මාතෘකා (Topics from Database):</h2>
 
-    <!-- ඩේටාබේස් එකේ ඩේටා තියෙනවද බලලා ලූප් කිරීම -->
     {% if topics %}
         {% for topic in topics %}
             <div class="topic-box">
@@ -52,7 +80,7 @@
             </div>
         {% endfor %}
     {% else %}
-        <p>තවම ඩේටාබේස් එකේ මාතෘකා කිසිවක් ඇතුළත් කර නැත. Admin Panel එකෙන් එකතු කරන්න!</p>
+        <p>තවම ඩේටාබේස් එකේ මාතෘකා කිසිවක් ඇතුළත් කර නැත.</p>
     {% endif %}
 </body>
 </html>
